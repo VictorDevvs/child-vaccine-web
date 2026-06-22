@@ -1,0 +1,49 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-title>Campanhas de Vacinação</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <h2 class="section-title">Ativas agora</h2>
+
+  <ng-container *ngIf="activeCampaigns$ | async as items">
+    <div *ngIf="items.length === 0" class="empty-state">
+      <p>Nenhuma campanha ativa no momento.</p>
+    </div>
+
+    <ion-grid>
+      <ion-row>
+        <ion-col size="12" size-md="6" size-lg="4" *ngFor="let item of items">
+          <ion-card class="campaign-card active-card">
+            <ion-card-content>
+              <div class="campaign-header">
+                <ion-icon name="megaphone-outline"></ion-icon>
+                <h3>{{ item.campaign.title }}</h3>
+              </div>
+              <p class="campaign-description">{{ item.campaign.description }}</p>
+
+              <div class="campaign-meta">
+                <span><ion-icon name="calendar-outline"></ion-icon> até {{ item.campaign.endDate | date:'dd/MM/yyyy' }}</span>
+                <span *ngIf="item.campaign.location"><ion-icon name="location-outline"></ion-icon> {{ item.campaign.location }}</span>
+              </div>
+
+              <ion-badge *ngFor="let child of item.eligibleChildren" class="eligible-badge">
+                {{ child.name }} pode participar
+              </ion-badge>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ng-container>
+
+  <h2 class="section-title" *ngIf="(pastCampaigns$ | async)?.length">Encerradas</h2>
+
+  <ion-card *ngFor="let campaign of (pastCampaigns$ | async)" class="campaign-card past-card">
+    <ion-card-content>
+      <h3>{{ campaign.title }}</h3>
+      <p class="campaign-description">{{ campaign.description }}</p>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

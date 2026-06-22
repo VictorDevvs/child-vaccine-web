@@ -4,6 +4,7 @@ import {
   collection,
   collectionData,
   doc,
+  docData,
   addDoc,
   updateDoc,
   deleteDoc,
@@ -23,6 +24,13 @@ export class ChildrenService {
     const q = query(ref, where('ownerId', '==', ownerId));
     return collectionData(q, { idField: 'id' }).pipe(
       map((docs: any[]) => docs.map(d => Child.fromFirestore(d.id, d)))
+    );
+  }
+
+  getChildById(childId: string): Observable<Child | undefined> {
+    const ref = doc(this.firestore, this.collectionName, childId);
+    return docData(ref, { idField: 'id' }).pipe(
+      map((data: any) => (data ? Child.fromFirestore(childId, data) : undefined))
     );
   }
 

@@ -1,0 +1,28 @@
+<ion-card class="child-card" (click)="onClick()" button="true">
+  <ion-card-content class="card-content">
+    <div class="card-top">
+      <div class="avatar" [style.background]="child.avatarColor">
+        {{ initials }}
+      </div>
+
+      <div class="info">
+        <h3>{{ child.name }}</h3>
+        <p>{{ child.getAgeLabel() }}</p>
+      </div>
+
+      <ion-badge *ngIf="overdueCount > 0" color="danger" class="status-badge">
+        <ion-icon name="alert-circle-outline"></ion-icon>
+        {{ overdueCount }} pendente{{ overdueCount > 1 ? 's' : '' }}
+      </ion-badge>
+      <ion-badge *ngIf="overdueCount === 0" color="success" class="status-badge">
+        <ion-icon name="checkmark-circle-outline"></ion-icon>
+        Em dia
+      </ion-badge>
+    </div>
+
+    <div class="progress-section">
+      <ion-progress-bar [value]="progress" class="vaccine-progress"></ion-progress-bar>
+      <p class="progress-text">{{ progressLabel }}</p>
+    </div>
+  </ion-card-content>
+</ion-card>

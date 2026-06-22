@@ -7,30 +7,45 @@ export const routes: Routes = [
     component: TabsPage,
     children: [
       {
-        path: 'tab1',
+        path: 'children',
         loadComponent: () =>
-          import('../tab1/tab1.page').then((m) => m.Tab1Page),
+          import('../features/children/children-list/children-list.page').then(m => m.ChildrenListPage),
       },
       {
-        path: 'tab2',
+        path: 'children/new',
         loadComponent: () =>
-          import('../tab2/tab2.page').then((m) => m.Tab2Page),
+          import('../features/children/child-form/child-form.page').then(m => m.ChildFormPage),
       },
       {
-        path: 'tab3',
+        path: 'children/:id',
         loadComponent: () =>
-          import('../tab3/tab3.page').then((m) => m.Tab3Page),
+          import('../features/children/child-detail/child-detail.page').then(m => m.ChildDetailPage),
+      },
+      {
+        path: 'children/:id/add-record',
+        loadComponent: () =>
+          import('../features/children/add-record/add-record.page').then(m => m.AddRecordPage),
+      },
+      {
+        path: 'campaigns',
+        loadComponent: () =>
+          import('../features/campaigns/campaigns-list/campaigns-list.page').then(m => m.CampaignsListPage),
+      },
+      {
+        path: 'profile',
+        loadComponent: () =>
+          import('../features/profile/profile/profile.page').then(m => m.ProfilePage),
       },
       {
         path: '',
-        redirectTo: '/tabs/tab1',
+        redirectTo: '/tabs/children',
         pathMatch: 'full',
       },
     ],
   },
   {
     path: '',
-    redirectTo: '/tabs/tab1',
+    redirectTo: '/tabs/children',
     pathMatch: 'full',
   },
 ];

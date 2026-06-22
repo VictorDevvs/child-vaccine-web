@@ -1,0 +1,65 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button [defaultHref]="'/tabs/children/' + childId"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Registrar Vacina</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <ion-item fill="outline" class="form-item">
+      <ion-select formControlName="vaccineId" label="Vacina" labelPlacement="floating">
+        <ion-select-option *ngFor="let vaccine of (vaccines$ | async)" [value]="vaccine.id">
+          {{ vaccine.name }}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-text color="danger" *ngIf="form.get('vaccineId')?.touched && form.get('vaccineId')?.invalid">
+      <p class="error-text">Selecione uma vacina.</p>
+    </ion-text>
+
+    <ion-item fill="outline" class="form-item">
+      <ion-select formControlName="doseNumber" label="Número da dose" labelPlacement="floating">
+        <ion-select-option [value]="1">1ª dose</ion-select-option>
+        <ion-select-option [value]="2">2ª dose</ion-select-option>
+        <ion-select-option [value]="3">3ª dose</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item fill="outline" class="form-item">
+      <ion-label>Data prevista</ion-label>
+      <ion-datetime-button datetime="scheduledDt" slot="end"></ion-datetime-button>
+    </ion-item>
+    <ion-modal [keepContentsMounted]="true">
+      <ng-template>
+        <ion-datetime id="scheduledDt" formControlName="scheduledDate" presentation="date" locale="pt-BR"></ion-datetime>
+      </ng-template>
+    </ion-modal>
+
+    <ion-item class="form-item toggle-item">
+      <ion-toggle formControlName="alreadyApplied">Já foi aplicada?</ion-toggle>
+    </ion-item>
+
+    <ng-container *ngIf="form.get('alreadyApplied')?.value">
+      <ion-item fill="outline" class="form-item">
+        <ion-label>Data de aplicação</ion-label>
+        <ion-datetime-button datetime="appliedDt" slot="end"></ion-datetime-button>
+      </ion-item>
+      <ion-modal [keepContentsMounted]="true">
+        <ng-template>
+          <ion-datetime id="appliedDt" formControlName="appliedDate" presentation="date" locale="pt-BR"></ion-datetime>
+        </ng-template>
+      </ion-modal>
+    </ng-container>
+
+    <ion-text color="danger" *ngIf="errorMessage">
+      <p class="error-text">{{ errorMessage }}</p>
+    </ion-text>
+
+    <ion-button type="submit" expand="block" class="submit-button" [disabled]="isLoading">
+      {{ isLoading ? 'Salvando...' : 'Salvar registro' }}
+    </ion-button>
+  </form>
+</ion-content>

@@ -1,0 +1,55 @@
+.child-header {
+  text-align: center;
+  margin-bottom: 16px;
+
+  h2 {
+    color: #473C33;
+    margin: 0;
+    font-size: 1.4rem;
+  }
+
+  p {
+    color: #473C33;
+    opacity: 0.6;
+    margin: 4px 0 0 0;
+  }
+}
+
+.status-segment {
+  margin-bottom: 16px;
+  --background: #f5f5f5;
+}
+
+.record-item {
+  --border-radius: 12px;
+  margin-bottom: 8px;
+  --background: #ffffff;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 60px 20px;
+  color: #473C33;
+  opacity: 0.6;
+}
+
+.fab-button {
+  --background: #FDA769;
+  --color: #ffffff;
+}
+
+ion-toolbar {
+  --background: #ffffff;
+  --color: #473C33;
+}
+
+ion-badge[color="success"] {
+  --background: #ABC270;
+}
+ion-badge[color="warning"] {
+  --background: #FEC868;
+  --color: #473C33;
+}
+ion-badge[color="danger"] {
+  --background: #FDA769;
+}

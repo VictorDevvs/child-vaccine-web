@@ -1,0 +1,24 @@
+.form-item {
+  margin-bottom: 4px;
+  --border-radius: 12px;
+  --border-color: #ABC270;
+}
+
+.error-text {
+  font-size: 0.8rem;
+  margin: 4px 0 16px 4px;
+}
+
+.submit-button {
+  margin-top: 24px;
+  --background: #ABC270;
+  --color: #473C33;
+  --border-radius: 12px;
+  font-weight: 600;
+  height: 48px;
+}
+
+ion-toolbar {
+  --background: #ffffff;
+  --color: #473C33;
+}

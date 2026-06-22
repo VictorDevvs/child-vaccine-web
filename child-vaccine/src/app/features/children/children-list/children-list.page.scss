@@ -1,0 +1,32 @@
+.empty-state {
+  text-align: center;
+  padding: 60px 20px;
+  color: #473C33;
+
+  p {
+    opacity: 0.7;
+    margin-bottom: 20px;
+  }
+}
+
+.add-button {
+  --background: #ABC270;
+  --color: #473C33;
+  --border-radius: 12px;
+  font-weight: 600;
+}
+
+.fab-button {
+  --background: #FDA769;
+  --background-activated: #e8935a;
+  --color: #ffffff;
+}
+
+ion-toolbar {
+  --background: #ffffff;
+  --color: #473C33;
+}
+
+ion-title {
+  font-weight: 700;
+}

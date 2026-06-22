@@ -1,0 +1,60 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/children"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ (child$ | async)?.name || 'Detalhes' }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div *ngIf="child$ | async as child" class="child-header">
+    <h2>{{ child.name }}</h2>
+    <p>{{ child.getAgeLabel() }}</p>
+  </div>
+
+  <ion-segment [(ngModel)]="selectedSegment" class="status-segment">
+    <ion-segment-button value="all">
+      <ion-label>Carteira completa</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="pending">
+      <ion-label>Pendências</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
+  <ng-container *ngIf="records$ | async as records">
+    <ion-list *ngIf="filteredRecords(records).length > 0; else emptyList">
+      <ion-item *ngFor="let record of filteredRecords(records)" class="record-item">
+        <ion-icon
+          [name]="getStatusIcon(record.getStatus())"
+          [color]="getStatusColor(record.getStatus())"
+          slot="start">
+        </ion-icon>
+        <ion-label>
+          <h3>{{ record.VaccineName }} — Dose {{ record.doseNumber }}</h3>
+          <p *ngIf="record.getStatus() === 'aplied'">
+            Aplicada em {{ record.apliedDate | date:'dd/MM/yyyy' }}
+          </p>
+          <p *ngIf="record.getStatus() !== 'aplied'">
+            Prevista para {{ record.shceduleDate | date:'dd/MM/yyyy' }}
+          </p>
+        </ion-label>
+        <ion-badge slot="end" [color]="getStatusColor(record.getStatus())">
+          {{ getStatusLabel(record.getStatus()) }}
+        </ion-badge>
+      </ion-item>
+    </ion-list>
+
+    <ng-template #emptyList>
+      <div class="empty-state">
+        <p>Nenhum registro encontrado.</p>
+      </div>
+    </ng-template>
+  </ng-container>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="goToAddRecord()" class="fab-button">
+      <ion-icon name="add-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

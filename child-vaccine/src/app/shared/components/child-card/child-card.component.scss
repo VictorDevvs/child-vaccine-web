@@ -1,0 +1,87 @@
+.child-card {
+  margin: 0 0 12px 0;
+  border-radius: 16px;
+  box-shadow: 0 2px 8px rgba(71, 60, 51, 0.08);
+}
+
+.card-content {
+  display: flex;
+  flex-direction: column;
+  padding: 14px;
+}
+
+.avatar {
+  width: 52px;
+  height: 52px;
+  min-width: 52px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #473C33;
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.info {
+  flex: 1;
+  min-width: 0;
+
+  h3 {
+    margin: 0;
+    color: #473C33;
+    font-size: 1.05rem;
+    font-weight: 600;
+  }
+
+  p {
+    margin: 2px 0 0 0;
+    color: #473C33;
+    opacity: 0.6;
+    font-size: 0.85rem;
+  }
+}
+
+.status-badge {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  white-space: nowrap;
+  font-size: 0.75rem;
+  --background: #FEC868;
+  --color: #473C33;
+}
+
+ion-badge[color="danger"] {
+  --background: #FDA769;
+  --color: #ffffff;
+}
+
+ion-badge[color="success"] {
+  --background: #ABC270;
+  --color: #ffffff;
+}
+
+.card-top {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.progress-section {
+  margin-top: 12px;
+}
+
+.vaccine-progress {
+  --background: #f0f0f0;
+  --progress-background: #ABC270;
+  height: 6px;
+  border-radius: 4px;
+}
+
+.progress-text {
+  margin: 6px 0 0 0;
+  font-size: 0.75rem;
+  color: #473C33;
+  opacity: 0.6;
+}

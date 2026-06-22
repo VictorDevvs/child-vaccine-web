@@ -1,0 +1,82 @@
+.section-title {
+  color: #473C33;
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin: 16px 0 12px 0;
+}
+
+.campaign-card {
+  border-radius: 16px;
+  margin-bottom: 12px;
+  box-shadow: 0 2px 8px rgba(71, 60, 51, 0.08);
+}
+
+.active-card {
+  border-left: 4px solid #ABC270;
+}
+
+.past-card {
+  opacity: 0.6;
+  border-left: 4px solid #cccccc;
+}
+
+.campaign-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+
+  ion-icon {
+    color: #FDA769;
+    font-size: 1.3rem;
+  }
+
+  h3 {
+    margin: 0;
+    color: #473C33;
+    font-weight: 700;
+    font-size: 1.05rem;
+  }
+}
+
+.campaign-description {
+  color: #473C33;
+  opacity: 0.8;
+  font-size: 0.9rem;
+  margin: 0 0 12px 0;
+}
+
+.campaign-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  font-size: 0.8rem;
+  color: #473C33;
+  opacity: 0.6;
+  margin-bottom: 8px;
+
+  span {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+}
+
+.eligible-badge {
+  --background: #FEC868;
+  --color: #473C33;
+  margin: 4px 4px 0 0;
+  font-weight: 600;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 40px 20px;
+  color: #473C33;
+  opacity: 0.6;
+}
+
+ion-toolbar {
+  --background: #ffffff;
+  --color: #473C33;
+}

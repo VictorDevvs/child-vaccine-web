@@ -1,0 +1,57 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/children"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Nova Criança</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <ion-item fill="outline" class="form-item">
+      <ion-input
+        formControlName="name"
+        label="Nome da criança"
+        labelPlacement="floating"
+        placeholder="Ex: Maria Silva">
+      </ion-input>
+    </ion-item>
+    <ion-text color="danger" *ngIf="form.get('name')?.touched && form.get('name')?.invalid">
+      <p class="error-text">Informe o nome da criança.</p>
+    </ion-text>
+
+    <ion-item fill="outline" class="form-item">
+      <ion-input
+        formControlName="birthDate"
+        type="datetime-local"
+        label="Data e horário de nascimento"
+        labelPlacement="floating"
+        [max]="maxDateTime">
+      </ion-input>
+    </ion-item>
+
+    <ion-text color="danger" *ngIf="form.get('birthDate')?.touched && form.get('birthDate')?.invalid">
+      <p class="error-text">Informe a data e o horário de nascimento.</p>
+    </ion-text>
+
+    <ion-item fill="outline" class="form-item">
+      <ion-select formControlName="gender" label="Sexo" labelPlacement="floating">
+        <ion-select-option value="male">Masculino</ion-select-option>
+        <ion-select-option value="female">Feminino</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-text color="danger" *ngIf="errorMessage">
+      <p class="error-text">{{ errorMessage }}</p>
+    </ion-text>
+
+    <ion-button
+      type="submit"
+      expand="block"
+      class="submit-button"
+      [disabled]="isLoading">
+      {{ isLoading ? 'Salvando...' : 'Salvar' }}
+    </ion-button>
+  </form>
+</ion-content>

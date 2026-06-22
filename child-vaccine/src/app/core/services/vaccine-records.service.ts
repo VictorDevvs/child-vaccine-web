@@ -7,8 +7,7 @@ import {
   addDoc,
   updateDoc,
   query,
-  where,
-  orderBy
+  where
 } from '@angular/fire/firestore';
 import { Observable, map } from 'rxjs';
 import { VaccineRecord } from '../models/vaccine-record.model';
@@ -20,13 +19,13 @@ export class VaccineRecordsService {
 
   getRecordsByChild(childId: string): Observable<VaccineRecord[]> {
     const ref = collection(this.firestore, this.collectionName);
-    const q = query(
-      ref,
-      where('childId', '==', childId),
-      orderBy('scheduledDate', 'asc')
-    );
+    const q = query(ref, where('childId', '==', childId));
     return collectionData(q, { idField: 'id' }).pipe(
-      map((docs: any[]) => docs.map(d => VaccineRecord.fromFirestore(d.id, d)))
+      map((docs: any[]) =>
+        docs
+          .map(d => VaccineRecord.fromFirestore(d.id, d))
+          .sort((left, right) => left.shceduleDate.getTime() - right.shceduleDate.getTime())
+      )
     );
   }
 
@@ -38,6 +37,6 @@ export class VaccineRecordsService {
   markAsApplied(record: VaccineRecord, date: Date = new Date()): Promise<void> {
     record.apply(date);
     const ref = doc(this.firestore, this.collectionName, record.id);
-    return updateDoc(ref, { appliedDate: date });
+    return updateDoc(ref, { apliedDate: date });
   }
 }

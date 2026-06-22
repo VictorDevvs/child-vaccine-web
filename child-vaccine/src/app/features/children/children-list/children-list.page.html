@@ -1,0 +1,39 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-title>Minhas Crianças</ion-title>
+    <ion-button slot="end" fill="clear" (click)="logout()">
+      <ion-icon name="log-out-outline" slot="icon-only"></ion-icon>
+    </ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ng-container *ngIf="childrenWithStatus$ | async as items">
+    <div *ngIf="items.length === 0" class="empty-state">
+      <p>Você ainda não cadastrou nenhuma criança.</p>
+      <ion-button (click)="goToAddChild()" class="add-button">
+        Cadastrar primeira criança
+      </ion-button>
+    </div>
+
+    <ion-grid *ngIf="items.length > 0" class="responsive-grid">
+      <ion-row>
+        <ion-col size="12" size-md="6" size-lg="4" *ngFor="let item of items">
+          <app-child-card
+            [child]="item.child"
+            [overdueCount]="item.overdueCount"
+            [appliedCount]="item.appliedCount"
+            [totalRecords]="item.totalRecords"
+            (cardClick)="goToDetail(item.child.id)">
+          </app-child-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ng-container>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="goToAddChild()" class="fab-button">
+      <ion-icon name="add-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

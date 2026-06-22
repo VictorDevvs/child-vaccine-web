@@ -1,1 +1,15 @@
+ion-tab-bar {
+  --background: #FFFFFF;
+  border-top: 1px solid #f0f0f0;
+}
 
+ion-tab-button {
+  --color: #473C33;
+  --color-selected: #ABC270;
+  opacity: 0.6;
+
+  &.tab-selected {
+    opacity: 1;
+    font-weight: 600;
+  }
+}
