@@ -1,0 +1,7 @@
+{
+  "name": "child-vaccine",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
