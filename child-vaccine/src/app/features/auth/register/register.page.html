@@ -1,0 +1,63 @@
+<ion-content class="ion-padding login-content">
+  <div class="login-wrapper">
+    <div class="login-header">
+      <h1>Criar conta</h1>
+      <p>Comece a acompanhar a vacinação dos seus filhos</p>
+    </div>
+
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" class="login-form">
+      <ion-item fill="outline" class="form-item">
+        <ion-input
+          formControlName="email"
+          type="email"
+          label="E-mail"
+          labelPlacement="floating"
+          placeholder="seuemail@exemplo.com">
+        </ion-input>
+      </ion-item>
+      <ion-text color="danger" *ngIf="form.get('email')?.touched && form.get('email')?.invalid">
+        <p class="error-text">Informe um e-mail válido.</p>
+      </ion-text>
+
+      <ion-item fill="outline" class="form-item">
+        <ion-input
+          formControlName="password"
+          type="password"
+          label="Senha"
+          labelPlacement="floating"
+          placeholder="••••••">
+        </ion-input>
+      </ion-item>
+      <ion-text color="danger" *ngIf="form.get('password')?.touched && form.get('password')?.invalid">
+        <p class="error-text">A senha deve ter pelo menos 6 caracteres.</p>
+      </ion-text>
+
+      <ion-item fill="outline" class="form-item">
+        <ion-input
+          formControlName="confirmPassword"
+          type="password"
+          label="Confirmar senha"
+          labelPlacement="floating"
+          placeholder="••••••">
+        </ion-input>
+      </ion-item>
+
+      <ion-text color="danger" *ngIf="errorMessage">
+        <p class="error-text">{{ errorMessage }}</p>
+      </ion-text>
+
+      <ion-button
+        type="submit"
+        expand="block"
+        class="submit-button"
+        [disabled]="isLoading">
+        {{ isLoading ? 'Criando conta...' : 'Criar conta' }}
+      </ion-button>
+    </form>
+
+    <div class="register-link">
+      <span>Já tem conta?</span>
+      <a routerLink="/login">Entrar</a>
+    </div>
+  </div>
+</ion-content>
